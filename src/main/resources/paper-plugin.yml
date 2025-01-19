@@ -1,0 +1,7 @@
+name: ItemBuilder
+version: "${version}"
+main: me.gaminglounge.itembuilder.ItemBuilderMain
+description: API to build itemstacks with different options
+api-version: "1.21.4"
+authors:
+  - "Jon1Games"
