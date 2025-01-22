@@ -9,6 +9,10 @@ public class Events {
             e.getWhoClicked().closeInventory();
         });
 
+        ItemBuilderManager.addBothClickEvent("ItemBuilder:cancel", (e) -> {
+            e.setCancelled(true);
+        });
+
     }
     
 }
