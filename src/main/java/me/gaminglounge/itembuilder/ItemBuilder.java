@@ -58,7 +58,8 @@ public class ItemBuilder {
     }
 
     public ItemBuilder setName(Component name) {
-        if (name != null) meta.displayName(name);
+        if (name != null)
+            meta.displayName(name);
         return this;
     }
 
@@ -80,7 +81,7 @@ public class ItemBuilder {
         return this;
     }
 
-    public ItemBuilder addEnchant(Enchantment enchantment,int level) {
+    public ItemBuilder addEnchant(Enchantment enchantment, int level) {
         meta.addEnchant(enchantment, level, true);
         return this;
     }
@@ -115,6 +116,21 @@ public class ItemBuilder {
         return this;
     }
 
+    public ItemBuilder addBothInteractionEvent(String pdv) {
+        addID(ItemBuilderManager.bothInteractionEvent, pdv);
+        return this;
+    }
+
+    public ItemBuilder addLeftInteractionEvent(String pdv) {
+        addID(ItemBuilderManager.leftInteractionEvent, pdv);
+        return this;
+    }
+
+    public ItemBuilder addRightInteractionEvent(String pdv) {
+        addID(ItemBuilderManager.rightInteractionEvent, pdv);
+        return this;
+    }
+
     public ItemBuilder addWithItemBreakBlockEvent(String pdv) {
         addID(ItemBuilderManager.withItemBreakBlockEvent, pdv);
         return this;
@@ -126,7 +142,8 @@ public class ItemBuilder {
     }
 
     public ItemStack build() {
-        if (lore != null) meta.lore(lore);
+        if (lore != null)
+            meta.lore(lore);
         item.setItemMeta(meta);
         return item;
     }
@@ -134,10 +151,9 @@ public class ItemBuilder {
     private void addID(NamespacedKey key, String pdv) {
         if (!container.has(key)) {
             container.set(
-                key,
-                PersistentDataType.STRING,
-                pdv
-                );
+                    key,
+                    PersistentDataType.STRING,
+                    pdv);
         } else {
             throw new IllegalStateException("Tryed to double register an event.");
         }

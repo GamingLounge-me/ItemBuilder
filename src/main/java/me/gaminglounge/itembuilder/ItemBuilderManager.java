@@ -9,18 +9,24 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemBreakEvent;
 
 public class ItemBuilderManager {
-    
+
     public static final NamespacedKey blockPlaceEvent = new NamespacedKey("itembuilder", "block_place_event");
     public static final NamespacedKey blockBreakEvent = new NamespacedKey("itembuilder", "block_break_event");
     public static final NamespacedKey bothClickEvent = new NamespacedKey("itembuilder", "both_click_event");
     public static final NamespacedKey leftClickEvent = new NamespacedKey("itembuilder", "left_click_event");
     public static final NamespacedKey rightClickEvent = new NamespacedKey("itembuilder", "right_click_event");
     public static final NamespacedKey dropEvent = new NamespacedKey("itembuilder", "drop_event");
-    public static final NamespacedKey withItemBreakBlockEvent = new NamespacedKey("itembuilder", "with_item_break_block_event");
+    public static final NamespacedKey withItemBreakBlockEvent = new NamespacedKey("itembuilder",
+            "with_item_break_block_event");
     public static final NamespacedKey itemBreakEvent = new NamespacedKey("itembuilder", "item_break_event");
+    public static final NamespacedKey bothInteractionEvent = new NamespacedKey("itembuilder", "both_interaction_event");
+    public static final NamespacedKey leftInteractionEvent = new NamespacedKey("itembuilder", "left_interaction_event");
+    public static final NamespacedKey rightInteractionEvent = new NamespacedKey("itembuilder",
+            "right_interaction_event");
 
     private final Map<String, Consumer<BlockPlaceEvent>> blockPlaceHandlerMap;
     private final Map<String, Consumer<BlockBreakEvent>> blockBreakHandlerMap;
@@ -30,6 +36,9 @@ public class ItemBuilderManager {
     private final Map<String, Consumer<PlayerDropItemEvent>> dropEventMap;
     private final Map<String, Consumer<BlockBreakEvent>> withItemBreakBlockHandlerMap;
     private final Map<String, Consumer<PlayerItemBreakEvent>> itemBreakEventMap;
+    private final Map<String, Consumer<PlayerInteractEvent>> bothInteractionEventMap;
+    private final Map<String, Consumer<PlayerInteractEvent>> leftInteractionEventMap;
+    private final Map<String, Consumer<PlayerInteractEvent>> rightInteractionEventMap;
 
     public ItemBuilderManager() {
         blockPlaceHandlerMap = new HashMap<>();
@@ -40,6 +49,9 @@ public class ItemBuilderManager {
         dropEventMap = new HashMap<>();
         withItemBreakBlockHandlerMap = new HashMap<>();
         itemBreakEventMap = new HashMap<>();
+        bothInteractionEventMap = new HashMap<>();
+        leftInteractionEventMap = new HashMap<>();
+        rightInteractionEventMap = new HashMap<>();
     }
 
     public static void addBlockPlaceEvent(String pdv, Consumer<BlockPlaceEvent> event) {
@@ -104,5 +116,29 @@ public class ItemBuilderManager {
 
     public static Consumer<PlayerItemBreakEvent> getItemBreakEvent(String pdv) {
         return ItemBuilderMain.INSTANCE.manager.itemBreakEventMap.get(pdv);
+    }
+
+    public static void addBothInteractionEvent(String pdv, Consumer<PlayerInteractEvent> event) {
+        ItemBuilderMain.INSTANCE.manager.bothInteractionEventMap.put(pdv, event);
+    }
+
+    public static Consumer<PlayerInteractEvent> getBothInteractionEvent(String pdv) {
+        return ItemBuilderMain.INSTANCE.manager.bothInteractionEventMap.get(pdv);
+    }
+
+    public static void addLeftInteractionEvent(String pdv, Consumer<PlayerInteractEvent> event) {
+        ItemBuilderMain.INSTANCE.manager.leftInteractionEventMap.put(pdv, event);
+    }
+
+    public static Consumer<PlayerInteractEvent> getLeftInteractionEvent(String pdv) {
+        return ItemBuilderMain.INSTANCE.manager.leftInteractionEventMap.get(pdv);
+    }
+
+    public static void addRightInteractionEvent(String pdv, Consumer<PlayerInteractEvent> event) {
+        ItemBuilderMain.INSTANCE.manager.rightInteractionEventMap.put(pdv, event);
+    }
+
+    public static Consumer<PlayerInteractEvent> getRightInteractionEvent(String pdv) {
+        return ItemBuilderMain.INSTANCE.manager.rightInteractionEventMap.get(pdv);
     }
 }

@@ -1,23 +1,24 @@
-package me.gaminglounge.itembuilder; 
- 
-import org.bukkit.plugin.PluginManager; 
+package me.gaminglounge.itembuilder;
+
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.gaminglounge.itembuilder.listener.BlockBreakListener;
-import me.gaminglounge.itembuilder.listener.BlockPlaceListener; 
+import me.gaminglounge.itembuilder.listener.BlockPlaceListener;
 import me.gaminglounge.itembuilder.listener.DropListener;
+import me.gaminglounge.itembuilder.listener.InteractionListener;
 import me.gaminglounge.itembuilder.listener.InventoryClickListener;
 import me.gaminglounge.itembuilder.listener.ItemBreakListener;
 import me.gaminglounge.itembuilder.listener.WithItemBreakBlockListener;
- 
-public final class ItemBuilderMain extends JavaPlugin { 
- 
+
+public final class ItemBuilderMain extends JavaPlugin {
+
     public static ItemBuilderMain INSTANCE;
     public ItemBuilderManager manager;
- 
+
     @Override
     public void onLoad() {
-        INSTANCE = this; 
+        INSTANCE = this;
         manager = new ItemBuilderManager();
         new Events();
     }
@@ -29,7 +30,7 @@ public final class ItemBuilderMain extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        
+
     }
 
     public void listener() {
@@ -41,5 +42,6 @@ public final class ItemBuilderMain extends JavaPlugin {
         pm.registerEvents(new InventoryClickListener(), this);
         pm.registerEvents(new ItemBreakListener(), this);
         pm.registerEvents(new WithItemBreakBlockListener(), this);
-    } 
-} 
+        pm.registerEvents(new InteractionListener(), this);
+    }
+}
