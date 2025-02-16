@@ -1,4 +1,8 @@
+[![](https://maven.gaminglounge.me/api/badge/latest/gaminglounge/me/gaminglounge/item-builder?color=40c14a&name=Item%20Builder&prefix=v&filter=none:SNAPSHOT)](https://maven.gaminglounge.me/#/gaminglounge/me/gaminglounge/item-builder)
+
 # ItemBuilder
+
+## [GuiAPI JavaDoc](https://maven.gaminglounge.me/javadoc/gaminglounge/me/gaminglounge/item-builder/latest)
 
 ## Using Item builder
 

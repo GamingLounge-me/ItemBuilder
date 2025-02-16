@@ -1,0 +1,10 @@
+* @gaminglounge-me/security
+
+.github/workflows/ @gaminglounge-me/build-system
+gradle/ @gaminglounge-me/build-system
+*.gradle @gaminglounge-me/build-system
+gradlew @gaminglounge-me/build-system
+gradlew.bat @gaminglounge-me/build-system
+
+readme.md
+src/
