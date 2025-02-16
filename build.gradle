@@ -1,9 +1,27 @@
 plugins {
     id 'java'
+    id 'maven-publish'
+    id 'me.qoomon.git-versioning' version '6.4.4'  
 }
 
 group = 'me.gaminglounge'
-version = '0.0'
+version = '0.0.0'
+gitVersioning.apply{
+    refs {
+        tag('v(?<version>.*)') {
+            version = '${ref.version}'
+        }
+        tag('dev(?<version>.*)') {
+            version = 'dev${ref.version}'
+        }
+        branch('.*') {
+            version = '${ref}-${commit.short}-SNAPSHOT'
+        }
+    }
+    rev {
+        version = '${commit}'
+    }
+}
 
 repositories {
     mavenCentral()
@@ -23,6 +41,8 @@ dependencies {
 
 def targetJavaVersion = 21
 java {
+    withJavadocJar()
+    withSourcesJar()
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     sourceCompatibility = javaVersion
     targetCompatibility = javaVersion
@@ -46,4 +66,57 @@ processResources {
     filesMatching('paper-plugin.yml') {
         expand props
     }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = "https://maven.pkg.github.com/" + System.getenv("GITHUB_REPOSITORY")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+        maven {
+            name = "gamingloungeMeGaminglounge"
+            url = uri("https://maven.gaminglounge.me/gaminglounge")
+            credentials {
+                username = project.findProperty("MAVEN_USERNAME") ?: System.getenv("MAVEN_USERNAME")
+                password = project.findProperty("MAVEN_PASSWORD") ?: System.getenv("MAVEN_PASSWORD")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+
+project.ext.annotationsVersion = "26.0.1"
+project.ext.adventureVersion = "4.18.0"
+project.ext.slf4jVersion = "2.0.9"
+project.ext.log4jVersion = "2.17.1"
+javadoc {
+    options.links(
+        "https://guava.dev/releases/33.3.1-jre/api/docs/",
+        "https://javadoc.io/doc/org.yaml/snakeyaml/2.2/",
+        "https://javadoc.io/doc/org.jetbrains/annotations/$annotationsVersion/",
+        "https://javadoc.io/doc/org.joml/joml/1.10.8/",
+        "https://www.javadoc.io/doc/com.google.code.gson/gson/2.11.0",
+        "https://jspecify.dev/docs/api/",
+        "https://jd.advntr.dev/api/$adventureVersion/",
+        "https://jd.advntr.dev/key/$adventureVersion/",
+        "https://jd.advntr.dev/text-minimessage/$adventureVersion/",
+        "https://jd.advntr.dev/text-serializer-gson/$adventureVersion/",
+        "https://jd.advntr.dev/text-serializer-legacy/$adventureVersion/",
+        "https://jd.advntr.dev/text-serializer-plain/$adventureVersion/",
+        "https://jd.advntr.dev/text-logger-slf4j/$adventureVersion/",
+        "https://javadoc.io/doc/org.slf4j/slf4j-api/$slf4jVersion/",
+        "https://javadoc.io/doc/org.apache.logging.log4j/log4j-api/$log4jVersion/",
+        "https://javadoc.io/doc/org.apache.maven.resolver/maven-resolver-api/1.7.3",
+        "https://jd.papermc.io/paper/1.21.4/",
+    )
 }
