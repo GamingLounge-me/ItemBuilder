@@ -19,3 +19,7 @@ bin/
  
 # Package Files 
 *.jar 
+!gradle/wrapper/*.jar
+
+# Ignore files that store secrets
+gradle.properties
