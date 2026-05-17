@@ -24,12 +24,14 @@ new ItemBuilder(UUID)
 
 ## Item Builder Arguments
 
+_pdv is explained in **Register events**_
+
 ```java
-.setName(Component)-
-.setLore(list<Component>)-
-.addLoreLine(Component)-
-.addEnchant(Enchantment, level)-
-.addPlaceEvent(pdv)-
+.setName(Component)
+.setLore(list<Component>)
+.addLoreLine(Component)
+.addEnchant(Enchantment, level)
+.addPlaceEvent(pdv)
 .addBlockBreakEvent(pdv)
 .addBothClickEvent(pdv)
 .addleftClickEvent(pdv)
@@ -37,11 +39,14 @@ new ItemBuilder(UUID)
 .addDropEvent(pdv)
 .addWithItemBreakBlockEvent(pdv)
 .addItemBreakEvent(pdv)
+.addBothInteractionEvent(pdv)
+.addLeftInteractionEvent(pdv)
+.addRightInteractionEvent(pdv)
 ```
 
 ## Register events
 
-_Event identifiers are mentiont as "pdv"_
+_Event identifiers are mentiont as "pdv" and can for example be a string like this "plugin:name"_
 _The addEvents methos need to be always called on start not only if the item is given_
 
 ### PlaceEvent
@@ -104,6 +109,30 @@ ItemBuilderManager.addItemBreakBlockEvent(pdv, (event) -> {
 
 ```java
 ItemBuilderManager.addItemBreakEvent(pdv, (event) -> {
+    // event code
+})
+```
+
+### BothInteractionEvent
+
+```java
+ItemBuilderManager.bothInteractionEvent(pdv, (event) -> {
+    // event code
+})
+```
+
+### LeftInteractionEvent
+
+```java
+ItemBuilderManager.leftInteractionEvent(pdv, (event) -> {
+    // event code
+})
+```
+
+### RightInteractionEvent
+
+```java
+ItemBuilderManager.rightInteractionEvent(pdv, (event) -> {
     // event code
 })
 ```
