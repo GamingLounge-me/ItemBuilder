@@ -39,6 +39,9 @@ _pdv is explained in **Register events**_
 .addDropEvent(pdv)
 .addWithItemBreakBlockEvent(pdv)
 .addItemBreakEvent(pdv)
+.addBothInteractionEvent(pdv)
+.addLeftInteractionEvent(pdv)
+.addRightInteractionEvent(pdv)
 ```
 
 ## Register events
