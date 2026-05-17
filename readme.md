@@ -25,11 +25,11 @@ new ItemBuilder(UUID)
 ## Item Builder Arguments
 
 ```java
-.setName(Component)-
-.setLore(list<Component>)-
-.addLoreLine(Component)-
-.addEnchant(Enchantment, level)-
-.addPlaceEvent(pdv)-
+.setName(Component)
+.setLore(list<Component>)
+.addLoreLine(Component)
+.addEnchant(Enchantment, level)
+.addPlaceEvent(pdv)
 .addBlockBreakEvent(pdv)
 .addBothClickEvent(pdv)
 .addleftClickEvent(pdv)
