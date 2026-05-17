@@ -109,3 +109,27 @@ ItemBuilderManager.addItemBreakEvent(pdv, (event) -> {
     // event code
 })
 ```
+
+### BothInteractionEvent
+
+```java
+ItemBuilderManager.bothInteractionEvent(pdv, (event) -> {
+    // event code
+})
+```
+
+### LeftInteractionEvent
+
+```java
+ItemBuilderManager.leftInteractionEvent(pdv, (event) -> {
+    // event code
+})
+```
+
+### RightInteractionEvent
+
+```java
+ItemBuilderManager.rightInteractionEvent(pdv, (event) -> {
+    // event code
+})
+```
