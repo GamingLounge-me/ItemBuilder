@@ -24,6 +24,8 @@ new ItemBuilder(UUID)
 
 ## Item Builder Arguments
 
+_pdv is explained in **Register events**_
+
 ```java
 .setName(Component)
 .setLore(list<Component>)
@@ -41,7 +43,7 @@ new ItemBuilder(UUID)
 
 ## Register events
 
-_Event identifiers are mentiont as "pdv"_
+_Event identifiers are mentiont as "pdv" and can for example be a string like this "plugin:name"_
 _The addEvents methos need to be always called on start not only if the item is given_
 
 ### PlaceEvent
